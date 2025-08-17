@@ -1,4 +1,4 @@
-// JSL03 — Console Task Manager (P2.21 + P2.22 + P2.23 + P2.24)
+// JSL03 — Console Task Manager
 
 // ---------------------------
 // P2.21: Start with 3 sample tasks stored as objects in an array
@@ -29,12 +29,12 @@ console.log("All Tasks:", tasks);
 
 // ---------------------------
 // P2.23: Unique incremental IDs for new tasks
-// Track the highest used id so new tasks get unique incremental IDs
 // ---------------------------
 let lastId = tasks.length; // starts at 3 because there are 3 initial tasks
 
 // ---------------------------
-// P2.22 + P2.24: Add up to 3 tasks via prompts with status validation
+// P2.22 + P2.24 + P2.25: Add up to 3 tasks with validation,
+// and alert when the 3rd (last allowed) task is added
 // ---------------------------
 for (let i = 0; i < 3; i++) {
   let title = prompt("Enter task title:");
@@ -61,7 +61,28 @@ for (let i = 0; i < 3; i++) {
     description: description,
     status: status,
   });
+
+  // P2.25: After adding the 3rd task (index 2), show the alert
+  if (i === 2) {
+    alert(
+      "There are enough tasks on your board, please check them in the console"
+    );
+  }
 }
 
-// Log again so we can see the newly added tasks with proper IDs and valid statuses
+// Log again so we can see the newly added tasks
 console.log("All Tasks:", tasks);
+
+// ---------------------------
+// P2.26: Function to filter and show completed tasks (status === "done")
+// ---------------------------
+function getCompletedTasks() {
+  const completed = tasks.filter(function (t) {
+    return t.status === "done";
+  });
+  console.log("Completed Tasks:", completed);
+  return completed;
+}
+
+// Call it so results are visible immediately
+getCompletedTasks();
