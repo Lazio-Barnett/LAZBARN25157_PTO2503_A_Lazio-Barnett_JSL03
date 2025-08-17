@@ -81,9 +81,10 @@ for (let i = 0; i < 3; i++) {
 logAllTasks();
 
 // ---------------------------
-// P2.26: Function to filter and show completed tasks (status === "done")
+// P2.26 + P2.28: Function to filter and clearly show completed tasks
 // ---------------------------
 function getCompletedTasks() {
+  console.log("----- Completed Tasks -----"); // P2.28 header
   const completed = tasks.filter(function (t) {
     return t.status === "done";
   });
