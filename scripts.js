@@ -1,4 +1,4 @@
-// JSL03 — Console Task Manager
+// JSL03 — Console Task Manager (P2.21 + P2.22 + P2.23 + P2.24)
 
 // ---------------------------
 // P2.21: Start with 3 sample tasks stored as objects in an array
