@@ -24,8 +24,15 @@ let tasks = [
   },
 ];
 
-// Log initial tasks so we can review in the console
-console.log("All Tasks:", tasks);
+// ---------------------------
+// P2.27: Function to log all tasks with a clear label
+// ---------------------------
+function logAllTasks() {
+  console.log("All Tasks:", tasks);
+}
+
+// Show initial tasks
+logAllTasks();
 
 // ---------------------------
 // P2.23: Unique incremental IDs for new tasks
@@ -71,7 +78,7 @@ for (let i = 0; i < 3; i++) {
 }
 
 // Log again so we can see the newly added tasks
-console.log("All Tasks:", tasks);
+logAllTasks();
 
 // ---------------------------
 // P2.26: Function to filter and show completed tasks (status === "done")
