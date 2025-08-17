@@ -27,6 +27,12 @@ let tasks = [
 console.log("All Tasks:", tasks);
 
 // ---------------------------
+// P2.23: Unique incremental IDs for new tasks
+// Track the highest used id so new tasks get unique incremental IDs
+// ---------------------------
+let lastId = tasks.length; // starts at 3 because there are 3 initial tasks
+
+// ---------------------------
 // P2.22: Allow user to add up to 3 new tasks
 // (Beginner version, no validation yet — that’s P2.24)
 // ---------------------------
