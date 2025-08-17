@@ -40,10 +40,12 @@ logAllTasks();
 let lastId = tasks.length; // starts at 3 because there are 3 initial tasks
 
 // ---------------------------
-// P2.22 + P2.24 + P2.25: Add up to 3 tasks with validation,
-// and alert when the 3rd (last allowed) task is added
+// P2.22 + P2.24 + P2.25 + P2.29:
+// Add up to 3 tasks with validation, alert on the 3rd,
+// and use a clearer loop variable name.
 // ---------------------------
-for (let i = 0; i < 3; i++) {
+// taskIndex tracks how many new tasks have been added in this run (0 → 2)
+for (let taskIndex = 0; taskIndex < 3; taskIndex++) {
   let title = prompt("Enter task title:");
   let description = prompt("Enter task description:");
 
@@ -70,7 +72,7 @@ for (let i = 0; i < 3; i++) {
   });
 
   // P2.25: After adding the 3rd task (index 2), show the alert
-  if (i === 2) {
+  if (taskIndex === 2) {
     alert(
       "There are enough tasks on your board, please check them in the console"
     );
