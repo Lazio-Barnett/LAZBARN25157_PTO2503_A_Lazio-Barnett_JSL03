@@ -1,7 +1,8 @@
 // JSL03 — Console Task Manager
 
 // ---------------------------
-// P2.21: Start with 3 sample tasks stored as objects in an array
+// P2.21 — Start with 3 sample task objects in an array
+// Each task has: id (number), title (short text), description (details), status ("todo" | "doing" | "done")
 // ---------------------------
 let tasks = [
   {
@@ -25,53 +26,63 @@ let tasks = [
 ];
 
 // ---------------------------
-// P2.27: Function to log all tasks with a clear label
+// P2.27 — log all tasks with a clear label
+// console.log prints to the browser console so we can inspect arrays/objects
 // ---------------------------
 function logAllTasks() {
   console.log("All Tasks:", tasks);
 }
 
-// Show initial tasks
+// Show the initial seed data in the console
 logAllTasks();
 
 // ---------------------------
-// P2.23: Unique incremental IDs for new tasks
+// P2.23 — Track the highest used id so new tasks get unique incremental IDs
+// We start at tasks.length because the data has ids 1..3 (length is 3).
+// Every time we add a task, we ++lastId and assign it to the new object.
 // ---------------------------
-let lastId = tasks.length; // starts at 3 because there are 3 initial tasks
+let lastId = tasks.length;
 
 // ---------------------------
-// P2.22 + P2.24 + P2.25 + P2.29:
-// Add up to 3 tasks with validation, alert on the 3rd,
-// and use a clearer loop variable name.
+// P2.22 + P2.24 + P2.25 + P2.29 — Add up to 3 tasks via prompt(), validate status, and alert on the 3rd
+// - prompt() asks the user for text input (blocks until they answer)
+// - toLowerCase() makes sure  the status is all lower case regards of the input so we can compare easily
+// - while (...) repeats until the entered status is one of the allowed values
+// - tasks.push(obj) appends a new object to the end of the tasks array
+// - When the 3rd new task is added (taskIndex === 2), we alert the user
 // ---------------------------
-// taskIndex tracks how many new tasks have been added in this run (0 → 2)
+// taskIndex counts how many new tasks we add in this run (0 → 2)
 for (let taskIndex = 0; taskIndex < 3; taskIndex++) {
+  // Ask for basic details
   let title = prompt("Enter task title:");
   let description = prompt("Enter task description:");
 
-  // Ask for status and validate allowed values
+  // Ask for status and uses the toLowerCase()
   let status = prompt("Enter task status (todo, doing, done):");
   if (status) status = status.toLowerCase();
 
-  // Keep asking until the user gives a valid status
+  // P2.24 — Validate: only accept "todo", "doing", or "done"
   while (status !== "todo" && status !== "doing" && status !== "done") {
     alert("Invalid status. Please enter 'todo', 'doing', or 'done'.");
     status = prompt("Enter task status (todo, doing, done):");
     if (status) status = status.toLowerCase();
   }
 
-  // Increment the id first, then assign so it stays unique and increasing
-  lastId++;
+  // P2.23 — Move the id forward, then assign it to the new task
+  lastId = lastId + 1; // same as lastId++
 
-  // Create and push the new task with the correct unique id
-  tasks.push({
+  // Create the new task object using the inputs
+  const newTask = {
     id: lastId,
     title: title,
     description: description,
     status: status,
-  });
+  };
 
-  // P2.25: After adding the 3rd task (index 2), show the alert
+  // Add the new task to the end of the tasks array
+  tasks.push(newTask);
+
+  // P2.25 — When the 3rd new task is added (index 2), notify the user
   if (taskIndex === 2) {
     alert(
       "There are enough tasks on your board, please check them in the console"
@@ -79,14 +90,16 @@ for (let taskIndex = 0; taskIndex < 3; taskIndex++) {
   }
 }
 
-// Log again so we can see the newly added tasks
+// Show the updated board after adding up to 3 tasks
 logAllTasks();
 
 // ---------------------------
-// P2.26 + P2.28: Function to filter and clearly show completed tasks
+// P2.26 + P2.28 — Show only completed tasks (status === "done"), with a clear header
+// - Array.filter(callback) creates a new array containing only items where callback returns true
+// - We print a header first so the console output is easy to scan (P2.28)
 // ---------------------------
 function getCompletedTasks() {
-  console.log("----- Completed Tasks -----"); // P2.28 header
+  console.log("----- Completed Tasks -----");
   const completed = tasks.filter(function (t) {
     return t.status === "done";
   });
@@ -94,5 +107,11 @@ function getCompletedTasks() {
   return completed;
 }
 
-// Call it so results are visible immediately
+// Call so results are visible immediately
 getCompletedTasks();
+
+// ---------------------------
+// P2.29 + P2.30 — Code clarity & comments
+// - Descriptive names: tasks, lastId, logAllTasks, getCompletedTasks, taskIndex
+// - Comments explain what each step does using plain language
+// ---------------------------
